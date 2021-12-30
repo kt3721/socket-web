@@ -7,7 +7,7 @@
 ```shell
 npm i socket-web -S
 
-// 或
+# 或
 
 yarn add socket-web
 ```
