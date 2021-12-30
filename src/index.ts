@@ -5,21 +5,14 @@ import type { HeartbeatOptions } from './heartbeat'
 import Reconnect from './reconnect'
 import type { ReconnectOptions } from './reconnect'
 
-interface ReconnectOptions1 extends ReconnectOptions {
-  enable?: boolean
-}
-interface HeartbeatOptions1 extends HeartbeatOptions {
-  enable?: boolean
-}
+export type WsOptions = Partial<{
+  debug: boolean,
+  autoConnect: boolean,
 
-export interface WsOptions {
-  debug?: boolean,
-  autoConnect?: boolean,
+  reconnect: ReconnectOptions,
 
-  reconnect?: ReconnectOptions1,
-
-  heartbeat?: HeartbeatOptions1
-}
+  heartbeat: HeartbeatOptions
+}>
 
 export default class WsClient extends EventHub {
   private readonly url: string // WebSocket 实例化参数
@@ -60,7 +53,7 @@ export default class WsClient extends EventHub {
   }
 
   // 重连
-  private reconnectInit(options: ReconnectOptions1 | undefined): void {
+  private reconnectInit(options?: HeartbeatOptions): void {
     if (this.reconnectEnable()) {
       this.reconnect = new Reconnect(this, options)
     }

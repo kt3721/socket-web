@@ -1,11 +1,13 @@
 import type WsClient from './index'
 
-export interface ReconnectOptions {
-  interval?: number, // 重连之前 延迟时间间隔 - 1s
-  maxInterval?: number, // 重连之前 最大 延迟时间间隔 - 30s
-  decay?: number, // 重新连接延迟的增加速率 - 每次重连的延迟时间是上次的 decay 倍
-  maxNumber?: number // 最大重连次数 - 默认无穷大（不限制）
-}
+export type ReconnectOptions = Partial<{
+  enable: boolean, // 是否启用
+
+  interval: number, // 重连之前 延迟时间间隔 - 1s
+  maxInterval: number, // 重连之前 最大 延迟时间间隔 - 30s
+  decay: number, // 重新连接延迟的增加速率 - 每次重连的延迟时间是上次的 decay 倍
+  maxNumber: number // 最大重连次数 - 默认无穷大（不限制）
+}>
 
 export default class Reconnect {
   // 重连之前 延迟时间间隔（初始） - 1s

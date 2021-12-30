@@ -1,13 +1,15 @@
 import type WsClient from './index'
 
 // 心跳配置
-export interface HeartbeatOptions {
-  interval?: number, // 心跳默认 30s
-  maxRetryNumber?: number, // 最大重试次数 - 超过后重连
+export type HeartbeatOptions = Partial<{
+  enable: boolean, // 是否启用
 
-  sendContent?: string, // 心跳发送内容
-  receiveContent?: string // 心跳接收内容
-}
+  interval: number, // 心跳默认 30s
+  maxRetryNumber: number, // 最大重试次数 - 超过后重连
+
+  sendContent: string, // 心跳发送内容
+  receiveContent: string // 心跳接收内容
+}>
 
 export default class HeartbeatDetect {
   private readonly interval: number = 30000 // 心跳间隔
