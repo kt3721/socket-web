@@ -53,7 +53,7 @@ export default class WsClient extends EventHub {
   }
 
   // 重连
-  private reconnectInit(options?: HeartbeatOptions): void {
+  private reconnectInit(options?: ReconnectOptions): void {
     if (this.reconnectEnable()) {
       this.reconnect = new Reconnect(this, options)
     }
